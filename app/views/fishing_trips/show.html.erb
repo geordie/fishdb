@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow">
+      <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+        <div>
+          <h3 class="card-title mb-0">
+            <i class="fas fa-fish me-2"></i>Fishing Trip Details
+          </h3>
+          <small class="text-white-50">
+            <%= @fishing_trip.date.strftime("%A, %B %d, %Y") %>
+          </small>
+        </div>
+        <div class="btn-group" role="group">
+          <%= link_to "Edit", edit_fishing_trip_path(@fishing_trip), class: "btn btn-outline-light btn-sm" %>
+          <%= link_to "Delete", @fishing_trip, method: :delete, 
+              class: "btn btn-outline-danger btn-sm",
+              confirm: "Are you sure?",
+              data: { 
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure you want to delete this fishing trip?"
+              } %>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="text-muted">Date</h5>
+            <p class="fs-5"><%= @fishing_trip.date.strftime("%B %d, %Y") %></p>
+          </div>
+          <div class="col-md-6">
+            <h5 class="text-muted">Fish Caught</h5>
+            <p class="fs-5">
+              <span class="badge bg-<%= @fishing_trip.fish > 0 ? 'success' : 'secondary' %> fs-6">
+                <%= @fishing_trip.total_fish_display %>
+              </span>
+            </p>
+          </div>
+        </div>
+        
+        <% if @fishing_trip.notes.present? %>
+          <hr>
+          <h5 class="text-muted">Notes</h5>
+          <div class="bg-light p-3 rounded">
+            <%= simple_format(@fishing_trip.notes) %>
+          </div>
+        <% else %>
+          <hr>
+          <p class="text-muted fst-italic">No notes recorded for this trip.</p>
+        <% end %>
+        
+        <hr>
+        <div class="d-flex gap-2">
+          <%= link_to "← Back to All Trips", fishing_trips_path, class: "btn btn-outline-primary" %>
+          <%= link_to "Edit Trip", edit_fishing_trip_path(@fishing_trip), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<%= form_with(model: fishing_trip, local: true, class: "row g-3") do |form| %>
+  <% if fishing_trip.errors.any? %>
+    <div class="col-12">
+      <div class="alert alert-danger" role="alert">
+        <h6 class="alert-heading">Please fix the following errors:</h6>
+        <ul class="mb-0">
+          <% fishing_trip.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-md-6">
+    <%= form.label :date, class: "form-label" %>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :fish, "Number of Fish Caught", class: "form-label" %>
+    <%= form.number_field :fish, class: "form-control", min: 0, step: 1 %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :notes, class: "form-label" %>
+    <%= form.text_area :notes, class: "form-control", rows: 6, 
+        placeholder: "Add notes about your fishing trip (Markdown supported)..." %>
+    <div class="form-text">
+      You can use Markdown formatting for rich text (e.g., **bold**, *italic*, - lists)
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="d-flex gap-2">
+      <%= form.submit class: "btn btn-primary" %>
+      <%= link_to "Cancel", fishing_trips_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+<% end %>

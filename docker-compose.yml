@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3309:3309"
+    volumes_from:
+      - dbdata
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=fishdb_development
+      - MYSQL_TCP_PORT=3309
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--port=3309", "--password=root"]
+      timeout: 20s
+      retries: 10
+
+  dbdata:
+    image: tianon/true
+    volumes:
+      - /var/lib/mysql
+
+  app-fishdb:
+    build: .
+    environment:
+      RAILS_ENV: development
+    ports:
+      - '3002:3002'
+    volumes_from:
+      - appdata
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links:
+      - "mysql"
+
+  appdata:
+    image: tianon/true
+    volumes:
+      - ".:/workspace"

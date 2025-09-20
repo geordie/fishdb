@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow">
+      <div class="card-header bg-secondary text-white">
+        <h3 class="card-title mb-0">
+          <i class="fas fa-edit me-2"></i>Edit Fishing Trip
+        </h3>
+        <small class="text-white-50">
+          Trip from <%= @fishing_trip.date.strftime("%B %d, %Y") %>
+        </small>
+      </div>
+      <div class="card-body">
+        <%= render 'form', fishing_trip: @fishing_trip %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="text-center">
+  <h1 class="display-4 mb-4">Welcome to FishDB</h1>
+  <p class="lead">Your fish database management system</p>
+  
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="fas fa-fish text-primary"></i> Fishing Trips
+          </h5>
+          <p class="card-text">Track your fishing adventures, record catches, and keep notes about your trips.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <%= link_to "View All Trips", fishing_trips_path, class: "btn btn-primary" %>
+            <%= link_to "Add New Trip", new_fishing_trip_path, class: "btn btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-5 text-muted">
+    <small>
+      Running on Rails <%= Rails.version %> with Ruby <%= RUBY_VERSION %>
+    </small>
+  </div>
+</div>
