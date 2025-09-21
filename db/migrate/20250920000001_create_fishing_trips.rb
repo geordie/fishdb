@@ -1,4 +1,4 @@
-class CreateSchema < ActiveRecord::Migration[7.1]
+class CreateFishingTrips < ActiveRecord::Migration[7.1]
   def change
     create_table :fishing_trips do |t|
       t.date :date, null: false
