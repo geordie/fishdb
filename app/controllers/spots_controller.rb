@@ -14,7 +14,7 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spot_params)
-    
+
     if @spot.save
       redirect_to @spot, notice: 'Spot was successfully created.'
     else

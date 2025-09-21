@@ -41,8 +41,11 @@
                           <%= link_to edit_spot_path(spot), class: "btn btn-sm btn-outline-secondary" do %>
                             <i class="fas fa-edit"></i>
                           <% end %>
-                          <%= link_to spot_path(spot), method: :delete, class: "btn btn-sm btn-outline-danger", 
-                              confirm: "Are you sure you want to delete this spot?" do %>
+                          <%= link_to spot_path(spot), class: "btn btn-sm btn-outline-danger",
+                              data: {
+                                turbo_method: :delete,
+                                turbo_confirm: "Are you sure you want to delete this spot?"
+                              } do %>
                             <i class="fas fa-trash"></i>
                           <% end %>
                         </div>

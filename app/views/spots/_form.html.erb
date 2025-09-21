@@ -14,7 +14,7 @@
     <%= form.label :name, class: "form-label" do %>
       <i class="fas fa-map-marker-alt me-1"></i>Spot Name *
     <% end %>
-    <%= form.text_field :name, class: "form-control #{'is-invalid' if spot.errors[:name].any?}", 
+    <%= form.text_field :name, class: "form-control #{'is-invalid' if spot.errors[:name].any?}",
         placeholder: "Enter spot name", required: true %>
     <% if spot.errors[:name].any? %>
       <div class="invalid-feedback">
@@ -27,7 +27,7 @@
     <%= form.label :description, class: "form-label" do %>
       <i class="fas fa-info-circle me-1"></i>Description
     <% end %>
-    <%= form.text_area :description, class: "form-control #{'is-invalid' if spot.errors[:description].any?}", 
+    <%= form.text_area :description, class: "form-control #{'is-invalid' if spot.errors[:description].any?}",
         placeholder: "Describe the fishing spot (optional)", rows: 4 %>
     <% if spot.errors[:description].any? %>
       <div class="invalid-feedback">

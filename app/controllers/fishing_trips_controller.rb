@@ -15,7 +15,7 @@ class FishingTripsController < ApplicationController
 
   def create
     @fishing_trip = FishingTrip.new(fishing_trip_params)
-    
+
     if @fishing_trip.save
       redirect_to @fishing_trip, notice: 'Fishing trip was successfully created.'
     else

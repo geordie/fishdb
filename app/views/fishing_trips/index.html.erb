@@ -44,10 +44,8 @@
               <div class="btn-group" role="group">
                 <%= link_to "View", trip, class: "btn btn-outline-primary btn-sm" %>
                 <%= link_to "Edit", edit_fishing_trip_path(trip), class: "btn btn-outline-secondary btn-sm" %>
-                <%= link_to "Delete", trip, method: :delete, 
-                    class: "btn btn-outline-danger btn-sm",
-                    confirm: "Are you sure?",
-                    data: { 
+                <%= link_to "Delete", trip, class: "btn btn-outline-danger btn-sm",
+                    data: {
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure you want to delete this fishing trip?"
                     } %>

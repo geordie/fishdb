@@ -12,10 +12,8 @@
         </div>
         <div class="btn-group" role="group">
           <%= link_to "Edit", edit_fishing_trip_path(@fishing_trip), class: "btn btn-outline-light btn-sm" %>
-          <%= link_to "Delete", @fishing_trip, method: :delete, 
-              class: "btn btn-outline-danger btn-sm",
-              confirm: "Are you sure?",
-              data: { 
+          <%= link_to "Delete", @fishing_trip, class: "btn btn-outline-danger btn-sm",
+              data: {
                 turbo_method: :delete,
                 turbo_confirm: "Are you sure you want to delete this fishing trip?"
               } %>
@@ -46,7 +44,7 @@
             </p>
           </div>
         </div>
-        
+
         <% if @fishing_trip.notes.present? %>
           <hr>
           <h5 class="text-muted">Notes</h5>
@@ -57,7 +55,7 @@
           <hr>
           <p class="text-muted fst-italic">No notes recorded for this trip.</p>
         <% end %>
-        
+
         <hr>
         <div class="d-flex gap-2">
           <%= link_to "← Back to All Trips", fishing_trips_path, class: "btn btn-outline-primary" %>
