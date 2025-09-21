@@ -1,0 +1,48 @@
+<%= form_with(model: spot, local: true, class: "needs-validation", novalidate: true) do |form| %>
+  <% if spot.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(spot.errors.count, "error") %> prohibited this spot from being saved:</h4>
+      <ul class="mb-0">
+        <% spot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" do %>
+      <i class="fas fa-map-marker-alt me-1"></i>Spot Name *
+    <% end %>
+    <%= form.text_field :name, class: "form-control #{'is-invalid' if spot.errors[:name].any?}", 
+        placeholder: "Enter spot name", required: true %>
+    <% if spot.errors[:name].any? %>
+      <div class="invalid-feedback">
+        <%= spot.errors[:name].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" do %>
+      <i class="fas fa-info-circle me-1"></i>Description
+    <% end %>
+    <%= form.text_area :description, class: "form-control #{'is-invalid' if spot.errors[:description].any?}", 
+        placeholder: "Describe the fishing spot (optional)", rows: 4 %>
+    <% if spot.errors[:description].any? %>
+      <div class="invalid-feedback">
+        <%= spot.errors[:description].first %>
+      </div>
+    <% end %>
+    <div class="form-text">Optional: Add details about location, fish species, access, etc.</div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <%= link_to spots_path, class: "btn btn-secondary" do %>
+      <i class="fas fa-times me-1"></i>Cancel
+    <% end %>
+    <%= form.submit class: "btn btn-success" do %>
+      <i class="fas fa-save me-1"></i><%= spot.new_record? ? 'Create Spot' : 'Update Spot' %>
+    <% end %>
+  </div>
+<% end %>

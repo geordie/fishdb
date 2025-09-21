@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # Fishing trips resource
   resources :fishing_trips
 
+  # Spots resource
+  resources :spots
+
   # Defines the root path route ("/")
   root "application#welcome"
 end

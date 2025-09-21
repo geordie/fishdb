@@ -29,10 +29,16 @@
             <li class="nav-item">
               <%= link_to "Fishing Trips", fishing_trips_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to "Fishing Spots", spots_path, class: "nav-link" %>
+            </li>
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <%= link_to "New Trip", new_fishing_trip_path, class: "btn btn-outline-light btn-sm" %>
+              <%= link_to "New Trip", new_fishing_trip_path, class: "btn btn-outline-light btn-sm me-2" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "New Spot", new_spot_path, class: "btn btn-outline-light btn-sm" %>
             </li>
           </ul>
         </div>
