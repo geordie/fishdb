@@ -1,4 +1,4 @@
-# FishDB
+# FishDB by GH
 
 A Ruby on Rails application for managing fish database information.
 
