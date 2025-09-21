@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_21_021247) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_21_025916) do
   create_table "fishing_trips", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date", null: false
     t.integer "fish", null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_21_021247) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "spot_id"
+    t.time "start_time"
+    t.time "end_time"
     t.index ["date"], name: "index_fishing_trips_on_date"
     t.index ["spot_id"], name: "index_fishing_trips_on_spot_id"
   end
