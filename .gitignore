@@ -72,6 +72,7 @@
 # Ignore IDE files
 .vscode/
 .idea/
+.editorconfig
 *.swp
 *.swo
 
