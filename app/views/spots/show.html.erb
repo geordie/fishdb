@@ -26,11 +26,52 @@
             </div>
             <div class="col-sm-6">
               <h6 class="text-muted">
-                <i class="fas fa-calendar-edit me-2"></i>Last Updated
+                <i class="fas fa-fish me-2"></i>Fishing Trips
               </h6>
-              <p><%= @spot.updated_at.strftime("%B %d, %Y at %I:%M %p") %></p>
+              <p><%= @spot.trips_count %> trips recorded</p>
             </div>
           </div>
+
+          <% if @spot.fishing_trips.any? %>
+            <div class="mt-4">
+              <h5 class="text-muted">
+                <i class="fas fa-list me-2"></i>Recent Trips at This Spot
+              </h5>
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Fish Caught</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @spot.fishing_trips.recent.limit(5).each do |trip| %>
+                      <tr>
+                        <td><%= trip.date.strftime("%B %d, %Y") %></td>
+                        <td>
+                          <span class="badge bg-<%= trip.fish > 0 ? 'success' : 'secondary' %>">
+                            <%= trip.total_fish_display %>
+                          </span>
+                        </td>
+                        <td>
+                          <%= link_to fishing_trip_path(trip), class: "btn btn-sm btn-outline-primary" do %>
+                            <i class="fas fa-eye"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <% if @spot.fishing_trips.count > 5 %>
+                <p class="text-muted text-center">
+                  ... and <%= @spot.fishing_trips.count - 5 %> more trips
+                </p>
+              <% end %>
+            </div>
+          <% end %>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between">

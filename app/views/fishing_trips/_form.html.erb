@@ -22,6 +22,16 @@
     <%= form.number_field :fish, class: "form-control", min: 0, step: 1 %>
   </div>
 
+  <div class="col-md-6">
+    <%= form.label :spot_id, "Fishing Spot", class: "form-label" %>
+    <%= form.collection_select :spot_id, @spots, :id, :name,
+        { prompt: "Select a spot (optional)" },
+        { class: "form-select" } %>
+    <div class="form-text">
+      <%= link_to "Add new spot", new_spot_path, target: "_blank", class: "text-decoration-none" %>
+    </div>
+  </div>
+
   <div class="col-12">
     <%= form.label :notes, class: "form-label" %>
     <%= form.text_area :notes, class: "form-control", rows: 6, 

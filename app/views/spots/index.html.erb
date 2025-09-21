@@ -17,6 +17,7 @@
                   <tr>
                     <th><i class="fas fa-map-marker-alt me-1"></i>Name</th>
                     <th><i class="fas fa-info-circle me-1"></i>Description</th>
+                    <th><i class="fas fa-fish me-1"></i>Trips</th>
                     <th><i class="fas fa-calendar me-1"></i>Created</th>
                     <th><i class="fas fa-cogs me-1"></i>Actions</th>
                   </tr>
@@ -26,6 +27,11 @@
                     <tr>
                       <td class="fw-bold"><%= spot.name %></td>
                       <td><%= truncate(spot.description, length: 50) if spot.description.present? %></td>
+                      <td>
+                        <span class="badge bg-info">
+                          <%= spot.trips_count %> trips
+                        </span>
+                      </td>
                       <td><%= spot.created_at.strftime("%B %d, %Y") %></td>
                       <td>
                         <div class="btn-group" role="group">

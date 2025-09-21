@@ -23,11 +23,21 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <h5 class="text-muted">Date</h5>
             <p class="fs-5"><%= @fishing_trip.date.strftime("%B %d, %Y") %></p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <h5 class="text-muted">Fishing Spot</h5>
+            <p class="fs-5">
+              <% if @fishing_trip.spot.present? %>
+                <%= link_to @fishing_trip.spot.name, spot_path(@fishing_trip.spot), class: "text-decoration-none" %>
+              <% else %>
+                <span class="text-muted">No spot selected</span>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-md-4">
             <h5 class="text-muted">Fish Caught</h5>
             <p class="fs-5">
               <span class="badge bg-<%= @fishing_trip.fish > 0 ? 'success' : 'secondary' %> fs-6">
