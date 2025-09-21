@@ -49,7 +49,7 @@ class FishingTripsController < ApplicationController
   end
 
   def fishing_trip_params
-    params.require(:fishing_trip).permit(:date, :fish, :notes, :spot_id).tap do |whitelisted|
+    params.require(:fishing_trip).permit(:date, :fish, :notes, :spot_id, :start_time, :end_time).tap do |whitelisted|
       whitelisted[:spot_id] = nil if whitelisted[:spot_id].blank?
     end
   end
