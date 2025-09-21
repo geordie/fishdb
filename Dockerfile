@@ -14,16 +14,14 @@ RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev
 
 #Cache bundle install
 WORKDIR /tmp
-COPY ./Gemfile ./
+ADD ./Gemfile Gemfile
+ADD ./Gemfile.lock Gemfile.lock
 RUN bundle install
 
-ENV APP_ROOT=/workspace
+ENV APP_ROOT /workspace
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 COPY . $APP_ROOT
 
-# Install gems in the app directory
-RUN bundle install
-
-EXPOSE 3002
-CMD ["sh", "-c", "echo 'Starting Rails application...' && pwd && ls -la && echo 'Running bundle exec rake db:create...' && RAILS_ENV=development bundle exec rake db:create && echo 'Running bundle exec rake db:migrate...' && RAILS_ENV=development bundle exec rake db:migrate && echo 'Starting Rails server...' && rm -f tmp/pids/server.pid && RAILS_ENV=development bundle exec rackup config.ru -o 0.0.0.0 -p 3002"]
+EXPOSE  3002
+CMD rm -f tmp/pids/server.pid && rake db:migrate && rake db:seed && rails s -b '0.0.0.0' -p 3002
