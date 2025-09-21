@@ -21,11 +21,26 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <h5 class="text-muted">Date</h5>
             <p class="fs-5"><%= @fishing_trip.date.strftime("%B %d, %Y") %></p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <h5 class="text-muted">Time</h5>
+            <% if @fishing_trip.has_time_range? %>
+              <p class="fs-6">
+                <%= @fishing_trip.start_time.strftime("%I:%M %p") %> - <%= @fishing_trip.end_time.strftime("%I:%M %p") %>
+                <br><span class="badge bg-info"><%= @fishing_trip.duration_display %></span>
+              </p>
+            <% elsif @fishing_trip.start_time.present? %>
+              <p class="fs-6">Started: <%= @fishing_trip.start_time.strftime("%I:%M %p") %></p>
+            <% elsif @fishing_trip.end_time.present? %>
+              <p class="fs-6">Ended: <%= @fishing_trip.end_time.strftime("%I:%M %p") %></p>
+            <% else %>
+              <p class="text-muted">Not recorded</p>
+            <% end %>
+          </div>
+          <div class="col-md-3">
             <h5 class="text-muted">Fishing Spot</h5>
             <p class="fs-5">
               <% if @fishing_trip.spot.present? %>
@@ -35,7 +50,7 @@
               <% end %>
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <h5 class="text-muted">Fish Caught</h5>
             <p class="fs-5">
               <span class="badge bg-<%= @fishing_trip.fish > 0 ? 'success' : 'secondary' %> fs-6">

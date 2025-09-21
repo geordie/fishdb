@@ -9,6 +9,7 @@
       <thead class="table-dark">
         <tr>
           <th>Date</th>
+          <th>Time</th>
           <th>Spot</th>
           <th>Fish Caught</th>
           <th>Notes</th>
@@ -19,6 +20,20 @@
         <% @fishing_trips.each do |trip| %>
           <tr>
             <td><%= trip.date.strftime("%B %d, %Y") %></td>
+            <td>
+              <% if trip.has_time_range? %>
+                <small class="text-muted">
+                  <%= trip.start_time.strftime("%I:%M %p") %> - <%= trip.end_time.strftime("%I:%M %p") %>
+                  <br><span class="badge bg-info"><%= trip.duration_display %></span>
+                </small>
+              <% elsif trip.start_time.present? %>
+                <small class="text-muted">Started: <%= trip.start_time.strftime("%I:%M %p") %></small>
+              <% elsif trip.end_time.present? %>
+                <small class="text-muted">Ended: <%= trip.end_time.strftime("%I:%M %p") %></small>
+              <% else %>
+                <span class="text-muted">-</span>
+              <% end %>
+            </td>
             <td>
               <% if trip.spot.present? %>
                 <%= link_to trip.spot.name, spot_path(trip.spot), class: "text-decoration-none" %>

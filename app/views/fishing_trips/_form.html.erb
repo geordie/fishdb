@@ -12,9 +12,21 @@
     </div>
   <% end %>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= form.label :date, class: "form-label" %>
     <%= form.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="col-md-4">
+    <%= form.label :start_time, "Start Time", class: "form-label" %>
+    <%= form.time_field :start_time, class: "form-control" %>
+    <div class="form-text">Optional: When you started fishing</div>
+  </div>
+
+  <div class="col-md-4">
+    <%= form.label :end_time, "End Time", class: "form-label" %>
+    <%= form.time_field :end_time, class: "form-control" %>
+    <div class="form-text">Optional: When you finished fishing</div>
   </div>
 
   <div class="col-md-6">
